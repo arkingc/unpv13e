@@ -8,6 +8,7 @@ Execute the following from the src/ directory:
     cd lib         # build the basic library that all programs need
     make           # use "gmake" everywhere on BSD/OS systems
 
+	# 这里make 会报错，把inet_ntop.c文件中的#include<arpa/inet.h>注释掉
     cd ../libfree  # continue building the basic library
     make
 
