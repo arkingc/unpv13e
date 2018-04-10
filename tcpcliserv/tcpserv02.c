@@ -20,7 +20,8 @@ main(int argc, char **argv)
 
 	Listen(listenfd, LISTENQ);
 
-	Signal(SIGCHLD, sig_chld);
+	//在Listen之后，Accept之前，设置信号SIGCHID的处理函数为sig_chld
+	Signal(SIGCHLD, sig_chld);	//处理子进程
 
 	for ( ; ; ) {
 		clilen = sizeof(cliaddr);
