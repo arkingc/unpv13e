@@ -7,10 +7,11 @@
     - [readline](test/readline1.c)
     - [readline](lib/readline.c)\(改进版\)
 * 程序
+    * [测试主机字节序](intro/byteorder.c)
     * [TCP回射程序——服务器](tcpcliserv/tcpserv01.c)
     * [TCP回射程序——客户端](tcpcliserv/tcpcli01.c)
 
-* [测试主机字节序](intro/byteorder.c)
+<br>
 
 宏值与头文件表：
 
@@ -18,6 +19,8 @@
 |:--:|:--:|:--:|
 |SERV_PORT|9877|unp.h|
 |MAXLINE|4096|unp.h|
+
+<br>
 
 POSIX规范要求的数据类型：
 
