@@ -36,3 +36,11 @@ POSIX规范要求的数据类型：
 |socklen_t|套接字地址结构的长度，一般为uint32_t|<sys/socket.h>|
 |in_addr_t|IPv4地址，一般为uint32_t|<netinet/in.h>|
 |in_port_t|TCP或UDP端口，一般为uint16_t|<netinet/in.h>|
+
+<br>
+
+Linux环境下开发经常会碰到很多错误(设置errno)，常见错误：
+
+|  | 描述 |
+|:--:|:--:|
+|EAGAIN|通常发生在非阻塞I/O中，如果数据未准备好，I/O操作会返回这个错误，提示再试一次|
