@@ -5,9 +5,9 @@
 /* include readline */
 #include	"unp.h"
 
-static int	read_cnt;
-static char	*read_ptr;
-static char	read_buf[MAXLINE];
+static int	read_cnt;				//读取的字节数
+static char	*read_ptr;				//
+static char	read_buf[MAXLINE];		//读缓冲区
 
 static ssize_t
 my_read(int fd, char *ptr)
