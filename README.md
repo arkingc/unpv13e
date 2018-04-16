@@ -14,7 +14,7 @@
 <table>
 <tr>
     <td rowspan="3"> TCP回射服务器 </td>
-    <td rowspan="2"> V1 </td>
+    <td rowspan="2"> v1 </td>
     <td> <a href = "tcpcliserv/tcpcli01.c">客户端</a> </td>
     <td> <a href = "lib/str_cli.c">str_cli函数</a> </td>
 </tr>
@@ -24,7 +24,7 @@
 </tr>
 <tr>
     <td rowspan="1"> select </td>
-    <td> <a href = "tcpcliserv/tcpserv01.c">客户端</a> </td>
+    <td> 客户端 </td>
     <td> <a href = "select/strcliselect01.c">str_cli函数(select版)</a> </td>
 </tr>
 </table>
