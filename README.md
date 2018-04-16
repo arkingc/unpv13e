@@ -8,8 +8,6 @@
     - [readline](lib/readline.c)\(改进版\)
 * 程序
     * [测试主机字节序](intro/byteorder.c)
-    * [TCP回射程序——服务器](tcpcliserv/tcpserv01.c)
-    * [TCP回射程序——客户端](tcpcliserv/tcpcli01.c)
 
 <table>
 <tr>
