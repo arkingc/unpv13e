@@ -7,17 +7,19 @@
 /* include readn */
 #include	"unp.h"
 
+//vptr指向存放读取数据的缓冲区
 ssize_t						/* Read "n" bytes from a descriptor. */
 readn(int fd, void *vptr, size_t n)
 {
-	size_t	nleft;
-	ssize_t	nread;
+	size_t	nleft;//剩余需要读取的字节数
+	ssize_t	nread;//已读字节数
 	char	*ptr;
 
 	ptr = vptr;
 	nleft = n;
 	while (nleft > 0) {
 		if ( (nread = read(fd, ptr, nleft)) < 0) {
+			//发生EINTR错误表示read调用被一个捕获的信号中断
 			if (errno == EINTR)
 				nread = 0;		/* and call read() again */
 			else
@@ -25,8 +27,8 @@ readn(int fd, void *vptr, size_t n)
 		} else if (nread == 0)
 			break;				/* EOF */
 
-		nleft -= nread;
-		ptr   += nread;
+		nleft -= nread;	//更新剩余需要读取的字节数
+		ptr   += nread;	//更新
 	}
 	return(n - nleft);		/* return >= 0 */
 }

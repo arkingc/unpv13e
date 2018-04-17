@@ -1,17 +1,16 @@
 /***************************************************************
- * 套接字上调用write输出的字节数可能比请求的数量少，原因在于内核中用于
- * 套接字的缓冲区可能已经达到了极限。需要调用者再次调用write，以输出剩
- * 余的字节。writen函数保证返回时所有请求数量的字节都被写入了套接字缓存区
+ * writen函数保证返回时所有请求数量的字节都被写入了套接字缓存区
  ***************************************************************/
 
 /* include writen */
 #include	"unp.h"
 
+//vptr指向存有用于写的数据缓冲区
 ssize_t						/* Write "n" bytes to a descriptor. */
 writen(int fd, const void *vptr, size_t n)
 {
-	size_t		nleft;
-	ssize_t		nwritten;
+	size_t		nleft;		//剩余需要写的字节数
+	ssize_t		nwritten;	//已经写完成的字节数
 	const char	*ptr;
 
 	ptr = vptr;
@@ -24,8 +23,8 @@ writen(int fd, const void *vptr, size_t n)
 				return(-1);			/* error */
 		}
 
-		nleft -= nwritten;
-		ptr   += nwritten;
+		nleft -= nwritten;	//更新剩余需要写的字节数
+		ptr   += nwritten;	//更新指向写缓冲区的指针
 	}
 	return(n);
 }
