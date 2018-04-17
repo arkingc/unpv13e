@@ -23,4 +23,4 @@ main(int argc, char **argv)
 	str_cli(stdin, sockfd[0]);		/* do it all */
 
 	exit(0);
-
+}

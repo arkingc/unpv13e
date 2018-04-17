@@ -1,11 +1,9 @@
 /*
- * 程序结构:
- *
- *            fgets  --------- writen       read -----------
+ *            fgets --------- writen       read -----------
  * 标准输入-------->|         |---------------->|           |
- *                  | TCP客户 |                 | TCP服务器 |
+ *                 | TCP客户 |                  | TCP服务器 |
  * 标准输出<--------|         |<----------------|           |
- *            fputs  --------- readline   writen -----------
+ *            fputs --------- readline   writen -----------
  */
 #include	"unp.h"
 
