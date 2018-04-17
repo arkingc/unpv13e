@@ -26,12 +26,12 @@
     <td align="center"> <a href = "select/strcliselect01.c">str_cli函数</a> </td>
 </tr>
 <tr>
-    <td align="center"> <a href = "tcpcliserv/tcpservselect01.c">服务器</a> </td>
-    <td align="center">  </td>
-</tr>
-<tr>
     <td align="center"> <a href = "select/tcpcli02.c">客户端</a> </td>
     <td align="center"> <a href = "select/strcliselect02.c">str_cli函数</a> </td>
+</tr>
+<tr>
+    <td align="center"> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/select.md#%E4%BB%A3%E7%A0%81">服务器</a> </td>
+    <td align="center">  </td>
 </tr>
 </table>
 
