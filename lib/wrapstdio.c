@@ -27,6 +27,12 @@ Fgets(char *ptr, int n, FILE *stream)
 {
 	char	*rptr;
 
+	/*
+	 * 当遇到文件结束符或错误时，fgets将返回一个空指针；
+	 * 
+	 * Fgets包裹函数检查是否发生错误，若发生则中止进程，因此Fgets只是在遇到
+	 * 文件结束符时才返回一个空指针
+	 */
 	if ( (rptr = fgets(ptr, n, stream)) == NULL && ferror(stream))
 		err_sys("fgets error");
 
