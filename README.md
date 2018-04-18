@@ -22,12 +22,12 @@
 </tr>
 <tr>
     <td align="center"> <a href = "tcpcliserv/tcpserv01.c">服务器</a>(多进程) </td>
-    <td align="center"> 服务器会产生僵尸子进程 </td>
+    <td align="center"> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/TCP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#1%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%AD%A3%E5%B8%B8%E7%BB%88%E6%AD%A2">服务器会产生僵尸子进程</a> </td>
 </tr>
 <tr>
     <td rowspan="1" align="center"> v2 </td>
     <td align="center"> <a href = "tcpcliserv/tcpserv02.c">服务器</a>(多进程) </td>
-    <td align="center"> 处理服务器僵尸子进程，会中断服务器系统调用 </td>
+    <td align="center"> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/TCP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#11-%E4%BD%BF%E7%94%A8wait%E7%89%88sig_chld%E5%87%BD%E6%95%B0%E5%A4%84%E7%90%86%E5%AD%90%E8%BF%9B%E7%A8%8Bsigchld%E4%BF%A1%E5%8F%B7">处理服务器僵尸子进程，会中断服务器系统调用</a> </td>
 </tr>
 <tr>
     <td rowspan="1" align="center"> v3 </td>
@@ -41,7 +41,7 @@
 </tr>
 <tr>
     <td align="center"> <a href = "tcpcliserv/tcpserv04.c">服务器</a>(多进程) </td>
-    <td align="center"> 同时处理多个SIGCHLD信号 </td>
+    <td align="center"> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/TCP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#12-%E4%BD%BF%E7%94%A8waitpid%E7%89%88sig_chld%E5%87%BD%E6%95%B0%E5%A4%84%E7%90%86%E5%AD%90%E8%BF%9B%E7%A8%8Bsigchld%E4%BF%A1%E5%8F%B7">同时处理多个SIGCHLD信号</a> </td>
 </tr>
 <tr>
     <td rowspan="3" align="center"> select </td>
@@ -58,7 +58,7 @@
 </tr>
 <tr>
     <td align="center"> <b>总结</b> </td>
-    <td colspan="3" align="center"> v1-v4：正确处理服务器终止的子进程 </td>
+    <td colspan="3" align="center"> <b>v1-v4</b>：正确处理服务器终止的子进程 </td>
 </tr>
 </table>
 
