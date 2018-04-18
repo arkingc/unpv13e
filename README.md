@@ -15,11 +15,10 @@
 
 <table>
 <tr>
-    <td rowspan="9" align="center"> TCP回射服务器 </td>
+    <td rowspan="9" align="center"> <b>TCP回射服务器</b> </td>
     <td rowspan="2" align="center"> v1 </td>
     <td align="center"> <a href = "tcpcliserv/tcpcli01.c">客户端</a> </td>
     <td align="center"> <a href = "lib/str_cli.c">str_cli函数</a> </td>
-    <td rowspan="6" align="center"> 正确处理服务器终止的子进程 </td>
 </tr>
 <tr>
     <td align="center"> <a href = "tcpcliserv/tcpserv01.c">服务器</a>(多进程) </td>
@@ -56,6 +55,10 @@
 <tr>
     <td align="center"> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/select.md#%E4%BB%A3%E7%A0%81">服务器</a>(单进程) </td>
     <td align="center">  </td>
+</tr>
+<tr>
+    <td align="center"> <b>总结</b> </td>
+    <td colspan="3" align="center"> v1-v4：正确处理服务器终止的子进程 </td>
 </tr>
 </table>
 
