@@ -37,7 +37,7 @@
 <tr>
     <td rowspan="2" align="center"> v4 </td>
     <td align="center"> <a href = "tcpcliserv/tcpcli04.c">客户端</a> </td>
-    <td align="center"> 正常终止时引起服务器5个子进程终止 </td>
+    <td align="center"> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/TCP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#12-%E4%BD%BF%E7%94%A8waitpid%E7%89%88sig_chld%E5%87%BD%E6%95%B0%E5%A4%84%E7%90%86%E5%AD%90%E8%BF%9B%E7%A8%8Bsigchld%E4%BF%A1%E5%8F%B7">正常终止时引起服务器5个子进程终止</a> </td>
 </tr>
 <tr>
     <td align="center"> <a href = "tcpcliserv/tcpserv04.c">服务器</a>(多进程) </td>
