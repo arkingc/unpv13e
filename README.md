@@ -3,7 +3,6 @@
 * 函数
     - [sock_ntop](lib/sock_ntop.c)
     - [signal](lib/signal.c)
-    - [sig_chld](tcpcliserv/sigchldwait.c)
     - [Fgets](https://github.com/arkingc/unpv13e/blob/master/lib/wrapstdio.c#L24)
     - 套接字读写
         + [readn](lib/readn.c)
@@ -16,10 +15,11 @@
 
 <table>
 <tr>
-    <td rowspan="7" align="center"> TCP回射服务器 </td>
+    <td rowspan="9" align="center"> TCP回射服务器 </td>
     <td rowspan="2" align="center"> v1 </td>
     <td align="center"> <a href = "tcpcliserv/tcpcli01.c">客户端</a> </td>
     <td align="center"> <a href = "lib/str_cli.c">str_cli函数</a> </td>
+    <td rowspan="6" align="center"> 正确处理服务器终止的子进程 </td>
 </tr>
 <tr>
     <td align="center"> <a href = "tcpcliserv/tcpserv01.c">服务器</a>(多进程) </td>
@@ -33,7 +33,16 @@
 <tr>
     <td rowspan="1" align="center"> v3 </td>
     <td align="center"> <a href = "tcpcliserv/tcpserv03.c">服务器</a>(多进程) </td>
-    <td align="center"> 处理服务器被中断的系统调用 </td>
+    <td align="center"> 处理服务器被中断的系统调用，无法同时处理多个SIGCHLD信号 </td>
+</tr>
+<tr>
+    <td rowspan="2" align="center"> v4 </td>
+    <td align="center"> <a href = "tcpcliserv/tcpcli04.c">客户端</a> </td>
+    <td align="center"> 正常终止时引起服务器5个子进程终止 </td>
+</tr>
+<tr>
+    <td align="center"> <a href = "tcpcliserv/tcpserv04.c">服务器</a>(多进程) </td>
+    <td align="center"> 同时处理多个SIGCHLD信号 </td>
 </tr>
 <tr>
     <td rowspan="3" align="center"> select </td>
