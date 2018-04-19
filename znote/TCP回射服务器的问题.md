@@ -3,6 +3,7 @@
     * [1.2 使用waitpid版sig_chld函数处理子进程SIGCHLD信号](#12-使用waitpid版sig_chld函数处理子进程sigchld信号)
 * [2.accept返回前连接终止](#2accept返回前连接终止)
 * [3.服务器进程终止](#3服务器进程终止)
+	* [3.1 继续对收到RST分节的套接字写](#31-继续对收到RST分节的套接字写)
 * [4.服务器主机崩溃](#4服务器主机崩溃)
 * [5.服务器主机崩溃后重启](#5服务器主机崩溃后重启)
 * [6.服务器主机关机](#6服务器主机关机)
@@ -139,9 +140,38 @@ kill掉服务器子进程后，子进程打开的所有描述符都被关闭。�
 
 当服务器TCP接收到来自客户的数据时，既然先前打开那个套接字的进程已经关闭，于是响应一个RST（可以使用tcpdump来观察分组，验证该RST确实发送了）
 
-然而客户端进程看不到这个RST，因为它在调用writen后立即调用readline，并且由于第2步中接收的FIN，所调用的readline立即返回0（表示EOF）。客户端此时并未预期收到EOF，于是以出错消息“serve terminated prematurely”（服务器过早终止）退出（上述讨论还取决于时序。客户端调用readline既可能发生在服务器的RST被客户收到之前，也可能发生在收到之后。如果发生在收到RST之前(如本例所示)，那么结果是客户得到一个未预期的EOF；否则结果是由readline返回一个ECONNRESET(“connection reset by peer”，对方复位连接错误)）
+然而客户端进程看不到这个RST，因为它在调用writen后立即调用readline，并且由于前面接收的FIN，所调用的readline立即返回0（表示EOF）。客户端此时并未预期收到EOF，于是以出错消息“serve terminated prematurely”(服务器过早终止)退出（上述讨论还取决于时序。客户端调用readline既可能发生在服务器的RST被客户收到之前，也可能发生在收到之后。如果发生在收到RST之前(如本例所示)，那么结果是客户得到一个未预期的EOF；否则结果是由readline返回一个ECONNRESET(“connection reset by peer”，对方复位连接错误)）
 
 > 问题：当FIN到达套接字时，客户正阻塞在fgets调用上，客户实际上在应对两个描述符——套接字和用户输入，它不能单纯阻塞在这两个源中某个特定源的输入上，而是应该阻塞在任何一个源的输入上，正是select和poll的目的之一
+
+### 3.1 继续对收到RST分节的套接字写
+
+当一个进程向某个已收到RST的套接字执行写操作时（客户可能在读回任何数据之前执行两次针对服务器的写操作），**内核向该进程发送一个SIGPIPE信号。该信号的默认行为是终止进程**，因此进程必须捕获它以免不情愿地被终止
+
+不论进程是捕获了该信号并从其信号处理函数返回，还是简单地忽略该信号，**写操作都将返回EPIPE错误**
+
+```c
+//tcpcliserv/str_cli11.c
+
+//这个str_cli函数用来模拟对收到RST分节的套接字进行写
+void
+str_cli(FILE *fp, int sockfd)
+{
+	char	sendline[MAXLINE], recvline[MAXLINE];
+
+	while (Fgets(sendline, MAXLINE, fp) != NULL) {
+
+		Writen(sockfd, sendline, 1);
+		sleep(1);
+		Writen(sockfd, sendline+1, strlen(sendline)-1);
+
+		if (Readline(sockfd, recvline, MAXLINE) == 0)
+			err_quit("str_cli: server terminated prematurely");
+
+		Fputs(recvline, stdout);
+	}
+}
+```
 
 ## 4.服务器主机崩溃
 
