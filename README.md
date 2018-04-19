@@ -58,7 +58,7 @@
 </tr>
 <tr>
     <td align="center"> <b>总结</b> </td>
-    <td colspan="3" align="center"> <b>v1-v4</b>：正确处理服务器终止的子进程 </td>
+    <td colspan="3" align="center"> <b>v1-v4</b>：正确处理服务器终止的子进程<br>v1版str_cli函数：<a href = "https://github.com/arkingc/unpv13e/blob/master/znote/select.md#%E4%BB%A3%E7%A0%81">阻塞于标准输入时无法处理服务器子进程发送的FIN分节</a> </td>
 </tr>
 </table>
 
