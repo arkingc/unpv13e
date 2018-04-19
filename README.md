@@ -58,7 +58,7 @@
 </tr>
 <tr>
     <td align="center"> <b>总结</b> </td>
-    <td colspan="3" align="center"> <b>v1-v4</b>：正确处理服务器终止的子进程<br>v1版str_cli函数：<a href = "https://github.com/arkingc/unpv13e/blob/master/znote/TCP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#3%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9B%E7%A8%8B%E7%BB%88%E6%AD%A2">阻塞于标准输入时无法处理服务器子进程发送的FIN分节</a> </td>
+    <td colspan="3" align="center"> <b>v1-v4</b>：正确处理服务器终止的子进程<br> <b>v1版str_cli函数：</b> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/TCP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#3%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9B%E7%A8%8B%E7%BB%88%E6%AD%A2">阻塞于标准输入时无法处理服务器子进程发送的FIN分节</a> </td>
 </tr>
 </table>
 
