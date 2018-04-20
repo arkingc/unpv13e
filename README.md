@@ -18,7 +18,7 @@
     <td rowspan="10" align="center"> <b>TCP回射服务器</b> </td>
     <td rowspan="2" align="center"> v1 </td>
     <td align="center"> <a href = "tcpcliserv/tcpcli01.c">客户端</a> </td>
-    <td align="center"> <a href = "lib/str_cli.c">str_cli函数</a>(阻塞于标准输入时乳房处理来自服务器的FIN分节) </td>
+    <td align="center"> <a href = "lib/str_cli.c">str_cli函数</a>(阻塞于标准输入时无法处理来自服务器子进程的FIN分节) </td>
 </tr>
 <tr>
     <td align="center"> <a href = "tcpcliserv/tcpserv01.c">服务器</a>(多进程) </td>
@@ -46,7 +46,7 @@
 <tr>
     <td rowspan="3" align="center"> select </td>
     <td align="center"> <a href = "select/tcpcli01.c">客户端</a> </td>
-    <td align="center"> <a href = "select/strcliselect01.c">str_cli函数</a>(无法处理重定向、无法处理I/O缓冲) </td>
+    <td align="center"> <a href = "select/strcliselect01.c">str_cli函数</a>(解决v1版的问题，但无法处理重定向、无法处理I/O缓冲) </td>
 </tr>
 <tr>
     <td align="center"> <a href = "select/tcpcli02.c">客户端</a> </td>
@@ -63,7 +63,7 @@
 </tr>
 <tr>
     <td align="center"> <b>总结</b> </td>
-    <td colspan="3" align="center"> <b>v1-v4</b>：正确处理服务器终止的子进程<br> <b>v1版str_cli函数：</b> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/TCP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#3%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AD%90%E8%BF%9B%E7%A8%8B%E7%BB%88%E6%AD%A2">阻塞于标准输入时无法处理服务器子进程发送的FIN分节</a> </td>
+    <td colspan="3" align="center"> <b>v1-v4</b>：正确处理服务器终止的子进程<br>  </td>
 </tr>
 </table>
 
