@@ -54,12 +54,12 @@
 </tr>
 <tr>
     <td align="center"> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/select.md#%E4%BB%A3%E7%A0%81">服务器</a>(单进程) </td>
-    <td align="center">  </td>
+    <td align="center"> 重写v4版服务器，使用单进程减少了多进程的开销 </td>
 </tr>
 <tr>
     <td rowspan="1" align="center"> poll </td>
     <td align="center"> <a href = "tcpcliserv/tcpservpoll01.c">服务器</a>(单进程) </td>
-    <td align="center">  </td>
+    <td align="center"> 重写v4版服务器，使用单进程减少了多进程的开销 </td>
 </tr>
 <tr>
     <td align="center"> <b>总结</b> </td>
