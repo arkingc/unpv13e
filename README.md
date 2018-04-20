@@ -46,7 +46,7 @@
 <tr>
     <td rowspan="3" align="center"> select </td>
     <td align="center"> <a href = "select/tcpcli01.c">客户端</a> </td>
-    <td align="center"> <a href = "select/strcliselect01.c">str_cli函数</a> </td>
+    <td align="center"> <a href = "select/strcliselect01.c">str_cli函数</a>(无法处理重定向、无法处理I/O缓冲) </td>
 </tr>
 <tr>
     <td align="center"> <a href = "select/tcpcli02.c">客户端</a> </td>

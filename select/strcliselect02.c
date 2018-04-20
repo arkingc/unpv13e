@@ -3,6 +3,9 @@
 void
 str_cli(FILE *fp, int sockfd)
 {
+	//当标准输入键入EOF时，表示不会再有新的内容发往服务器
+	//此时客户只需要等待所有“回射”的数据都被接收到后，就能
+	//返回，stdineof就是记录是否已经键入EOF
 	int			maxfdp1, stdineof;
 	fd_set		rset;
 	char		buf[MAXLINE];
