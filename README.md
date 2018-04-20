@@ -18,7 +18,7 @@
     <td rowspan="10" align="center"> <b>TCP回射服务器</b> </td>
     <td rowspan="2" align="center"> v1 </td>
     <td align="center"> <a href = "tcpcliserv/tcpcli01.c">客户端</a> </td>
-    <td align="center"> <a href = "lib/str_cli.c">str_cli函数</a> </td>
+    <td align="center"> <a href = "lib/str_cli.c">str_cli函数</a>(阻塞于标准输入时乳房处理来自服务器的FIN分节) </td>
 </tr>
 <tr>
     <td align="center"> <a href = "tcpcliserv/tcpserv01.c">服务器</a>(多进程) </td>
@@ -50,7 +50,7 @@
 </tr>
 <tr>
     <td align="center"> <a href = "select/tcpcli02.c">客户端</a> </td>
-    <td align="center"> <a href = "select/strcliselect02.c">str_cli函数</a> </td>
+    <td align="center"> <a href = "select/strcliselect02.c">str_cli函数</a>(解决前一版的问题) </td>
 </tr>
 <tr>
     <td align="center"> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/select.md#%E4%BB%A3%E7%A0%81">服务器</a>(单进程) </td>
