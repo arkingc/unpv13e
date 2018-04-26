@@ -5,7 +5,6 @@
     - [signal](lib/signal.c)
     - [Fgets](https://github.com/arkingc/unpv13e/blob/master/lib/wrapstdio.c#L24)
     - [dg_echo](lib/dg_echo.c)（UDP回射服务器服务端）
-    - [dg_cli](lib/dg_cli.c)（UDP回射服务器客户端）
     - 套接字读写
         + [readn](lib/readn.c)
         + [writen](lib/writen.c)
@@ -74,7 +73,7 @@
     <td rowspan="10" align="center"> <b>UDP回射服务器</b> </td>
     <td rowspan="2" align="center"> v1 </td>
     <td align="center"> <a href = "udpcliserv/udpcli01.c">客户端</a> </td>
-    <td align="center">  </td>
+    <td align="center"> <a href = "lib/dg_cli.c">dg_cli函数</a>(客户数据报或服务器应答丢失会使客户永久阻塞于recvfrom) </td>
 </tr>
 <tr>
     <td align="center"> <a href = "udpcliserv/udpserv01.c">服务器</a>(单进程) </td>
