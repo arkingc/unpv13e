@@ -82,7 +82,7 @@
 <tr>
     <td rowspan="1" align="center"> v2 </td>
     <td align="center"> <a href = "udpcliserv/udpcli01.c">客户端</a> </td>
-    <td align="center"> <a href = "udpcliserv/dgcliaddr.c">dg_cli函数</a>(v2)<br>处理问题一，验证接收到的响应。但无法处理服务器多宿(多个IP)的情况</td>
+    <td align="center"> <a href = "udpcliserv/dgcliaddr.c">dg_cli函数</a>(v2)<br> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/UDP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#11-%E9%AA%8C%E8%AF%81%E6%94%B6%E5%88%B0%E7%9A%84%E6%95%B0%E6%8D%AE">处理问题一，验证接收到的响应。但无法处理服务器多宿(多个IP)的情况</a> </td>
 </tr>
 </table>
 
