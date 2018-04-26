@@ -82,7 +82,7 @@
 <tr>
     <td rowspan="1" align="center"> v2 </td>
     <td align="center"> <a href = "udpcliserv/udpcli01.c">客户端</a> </td>
-    <td align="center"> <a href = "udpcliserv/dgcliaddr.c">dg_cli函数</a>(v2)<br>解决v1版的问题一，验证接收到的响应<br>问题：无法处理服务器多宿(多个IP)的情况</td>
+    <td align="center"> <a href = "udpcliserv/dgcliaddr.c">dg_cli函数</a>(v2)<br>解决v1版的问题一，验证接收到的响应。但无法处理服务器多宿(多个IP)的情况</td>
 </tr>
 </table>
 
