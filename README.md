@@ -73,11 +73,16 @@
     <td rowspan="10" align="center"> <b>UDP回射服务器</b> </td>
     <td rowspan="2" align="center"> v1 </td>
     <td align="center"> <a href = "udpcliserv/udpcli01.c">客户端</a> </td>
-    <td align="center"> <a href = "lib/dg_cli.c">dg_cli函数</a><br>问题一：任何进程可向客户端发数据，会与服务器的回射数据报混杂<br>问题二：客户数据报或服务器应答丢失会使客户永久阻塞于recvfrom</td>
+    <td align="center"> <a href = "lib/dg_cli.c">dg_cli函数</a>(v1)<br>问题一：任何进程可向客户端发数据，会与服务器的回射数据报混杂<br>问题二：客户数据报或服务器应答丢失会使客户永久阻塞于recvfrom</td>
 </tr>
 <tr>
     <td align="center"> <a href = "udpcliserv/udpserv01.c">服务器</a>(单进程) </td>
     <td align="center">  </td>
+</tr>
+<tr>
+    <td rowspan="1" align="center"> v2 </td>
+    <td align="center"> <a href = "udpcliserv/udpcli01.c">客户端</a> </td>
+    <td align="center"> <a href = "udpcliserv/dgcliaddr.c">dg_cli函数</a>(v2)<br>解决v1版的问题一，验证接收到的响应<br>问题：无法处理服务器多宿(多个IP)的情况</td>
 </tr>
 </table>
 

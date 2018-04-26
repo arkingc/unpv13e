@@ -14,6 +14,7 @@ main(int argc, char **argv)
 	servaddr.sin_len = sizeof(servaddr);
 #endif
 	servaddr.sin_family = AF_INET;
+	//将服务器端口该成了7，因此客户端可以使用任何运行标准回射服务器的主机
 	servaddr.sin_port = htons(7);
 	Inet_pton(AF_INET, argv[1], &servaddr.sin_addr);
 
