@@ -6,12 +6,15 @@ dg_cli(FILE *fp, int sockfd, const SA *pservaddr, socklen_t servlen)
 	int		n;
 	char	sendline[MAXLINE], recvline[MAXLINE + 1];
 
+	//使用了连接
 	Connect(sockfd, (SA *) pservaddr, servlen);
 
 	while (Fgets(sendline, MAXLINE, fp) != NULL) {
 
+		//使用write代替sendto
 		Write(sockfd, sendline, strlen(sendline));
 
+		//使用read代替recvfrom
 		n = Read(sockfd, recvline, MAXLINE);
 
 		recvline[n] = 0;	/* null terminate */

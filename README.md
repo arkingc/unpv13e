@@ -66,23 +66,49 @@
 
 <tr>
     <td align="center"> <b>总结</b> </td>
-    <td colspan="3" align="center"> <b>v1-v4</b>：正确处理服务器终止的子进程<br>  </td>
+    <td colspan="3" align="center"> <b>v1-v4：正确处理服务器终止的子进程</b> </td>
 </tr>
+</table>
 
+<table>
 <tr>
     <td rowspan="10" align="center"> <b>UDP回射服务器</b> </td>
     <td rowspan="2" align="center"> v1 </td>
     <td align="center"> <a href = "udpcliserv/udpcli01.c">客户端</a> </td>
-    <td align="center"> <a href = "lib/dg_cli.c">dg_cli函数</a>(v1)<br>问题一：任何进程可向客户端发数据，会与服务器的回射数据报混杂<br>问题二：客户数据报或服务器应答丢失会使客户永久阻塞于recvfrom</td>
+    <td align="center"> <a href = "lib/dg_cli.c">dg_cli函数</a>(v1)<br>问题一：任何进程可向客户端发数据，会与服务器的回射数据报混杂<br>问题二：客户数据报或服务器应答丢失会使客户永久阻塞于recvfrom<br>
+    <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/UDP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#2%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9B%E7%A8%8B%E6%9C%AA%E8%BF%90%E8%A1%8C">问题三：服务器未启动会使客户端阻塞于recvfrom</a></td>
 </tr>
 <tr>
     <td align="center"> <a href = "udpcliserv/udpserv01.c">服务器</a>(单进程) </td>
-    <td align="center">  </td>
+    <td align="center"> <a href = "lib/dg_echo.c">dg_echo函数</a> </td>
 </tr>
 <tr>
     <td rowspan="1" align="center"> v2 </td>
     <td align="center"> <a href = "udpcliserv/udpcli02.c">客户端</a> </td>
     <td align="center"> <a href = "udpcliserv/dgcliaddr.c">dg_cli函数</a>(v2)<br> <a href = "https://github.com/arkingc/unpv13e/blob/master/znote/UDP%E5%9B%9E%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E9%97%AE%E9%A2%98.md#11-%E9%AA%8C%E8%AF%81%E6%94%B6%E5%88%B0%E7%9A%84%E6%95%B0%E6%8D%AE">处理问题一，验证接收到的响应。但无法处理服务器多宿(多个IP)的情况</a> </td>
+</tr>
+<tr>
+    <td rowspan="1" align="center"> v3 </td>
+    <td align="center"> <a href = "udpcliserv/udpcli04.c">客户端</a> </td>
+    <td align="center"> <a href = "udpcliserv/dgcliconnect.c">dg_cli函数</a>(connect版)<br> </td>
+</tr>
+<tr>
+    <td rowspan="2" align="center"> v4 </td>
+    <td align="center"> <a href = "udpcliserv/udpcli06.c">客户端</a> </td>
+    <td align="center"> <a href = "udpcliserv/dgcliloop1.c">dg_cli函数</a>(v3，写2000个1400字节的UDP数据报给服务器)<br>问题：UDP缺乏流量控制，服务器接收速率慢时，缓冲区被发送端淹没<br></td>
+</tr>
+<tr>
+    <td align="center"> <a href = "udpcliserv/udpserv06.c">服务器</a>(单进程) </td>
+    <td align="center"> <a href = "udpcliserv/dgecholoop1.c">dg_echo函数</a> </td>
+</tr>
+<tr>
+    <td rowspan="2" align="center"> v5 </td>
+    <td align="center"> <a href = "udpcliserv/udpserv07.c">服务器</a>(单进程) </td>
+    <td align="center"> <a href = "udpcliserv/dgecholoop2.c">dg_echo函数</a>(增大接收缓冲区的大小)</td>
+</tr>
+<tr>
+    <td align="center"> <b>总结</b> </td>
+    <td colspan="3" align="center"> <b>v1：问题二、三的根本原因是UDP数据传输不可靠</b>：正确处理服务器终止的子进程<br><b>v4-v5：UDP缺乏流量控制，服务器接收的数据报数目不定，依赖诸多因素</b>：正确处理服务器终止的子进程  </td>
 </tr>
 </table>
 
