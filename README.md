@@ -17,7 +17,7 @@
 
 <table>
 <tr>
-    <td rowspan="10" align="center"> <b>TCP回射服务器</b> </td>
+    <td rowspan="7" align="center"> <b>TCP回射服务器</b> </td>
     <td rowspan="2" align="center"> v1 </td>
     <td align="center"> <a href = "tcpcliserv/tcpcli01.c">客户端</a> </td>
     <td align="center"> <a href = "lib/str_cli.c">str_cli函数</a>(阻塞于标准输入时无法处理来自服务器子进程的FIN分节) </td>
