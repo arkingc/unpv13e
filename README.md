@@ -89,26 +89,26 @@
 </tr>
 <tr>
     <td rowspan="1" align="center"> v3 </td>
-    <td align="center"> <a href = "udpcliserv/udpcli04.c">客户端</a> </td>
-    <td align="center"> <a href = "udpcliserv/dgcliconnect.c">dg_cli函数</a>(connect版)<br> </td>
+    <td align="center"> <a href = "udpcliserv/udpcli04.c">客户端</a>(connect版) </td>
+    <td align="center"> <a href = "udpcliserv/dgcliconnect.c">dg_cli函数</a>(v3)<br> </td>
 </tr>
 <tr>
     <td rowspan="2" align="center"> v4 </td>
     <td align="center"> <a href = "udpcliserv/udpcli06.c">客户端</a> </td>
-    <td align="center"> <a href = "udpcliserv/dgcliloop1.c">dg_cli函数</a>(v3，写2000个1400字节的UDP数据报给服务器)<br>问题：UDP缺乏流量控制，服务器接收速率慢时，缓冲区被发送端淹没<br></td>
+    <td align="center"> <a href = "udpcliserv/dgcliloop1.c">dg_cli函数</a>(v4)：写2000个1400字节的UDP数据报给服务器<br>问题：UDP缺乏流量控制，服务器接收速率慢时，缓冲区被发送端淹没<br></td>
 </tr>
 <tr>
     <td align="center"> <a href = "udpcliserv/udpserv06.c">服务器</a>(单进程) </td>
     <td align="center"> <a href = "udpcliserv/dgecholoop1.c">dg_echo函数</a> </td>
 </tr>
 <tr>
-    <td rowspan="2" align="center"> v5 </td>
+    <td rowspan="1" align="center"> v5 </td>
     <td align="center"> <a href = "udpcliserv/udpserv07.c">服务器</a>(单进程) </td>
     <td align="center"> <a href = "udpcliserv/dgecholoop2.c">dg_echo函数</a>(增大接收缓冲区的大小)</td>
 </tr>
 <tr>
     <td align="center"> <b>总结</b> </td>
-    <td colspan="3" align="center"> <b>v1：问题二、三的根本原因是UDP数据传输不可靠</b>：正确处理服务器终止的子进程<br><b>v4-v5：UDP缺乏流量控制，服务器接收的数据报数目不定，依赖诸多因素</b>：正确处理服务器终止的子进程  </td>
+    <td colspan="3" align="center"> <b>v1：问题二、三的根本原因是UDP数据传输不可靠</b><br><b>v4-v5：UDP缺乏流量控制，服务器接收的数据报数目不定，依赖诸多因素</b>  </td>
 </tr>
 </table>
 
