@@ -21,6 +21,9 @@ udp_connect(const char *host, const char *serv)
 		if (sockfd < 0)
 			continue;	/* ignore this one */
 
+		//connect不会发送任何东西到对端，如果存在错误(譬如对端不可达或所
+		//指定端口上没有服务器)，调用者就得等到向对端发送一个数据报之后才
+		//能发现
 		if (connect(sockfd, res->ai_addr, res->ai_addrlen) == 0)
 			break;		/* success */
 

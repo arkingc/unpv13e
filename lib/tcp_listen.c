@@ -9,7 +9,9 @@ tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)
 	struct addrinfo	hints, *res, *ressave;
 
 	bzero(&hints, sizeof(struct addrinfo));
-	hints.ai_flags = AI_PASSIVE;
+	//AI_PASSIVE和AF_UNSPEC两个暗示信息将会返回2个套接字地址结构：
+	//  1个IPv4的，1个IPv6的
+	hints.ai_flags = AI_PASSIVE;//因为该函数供服务器使用
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 
@@ -35,6 +37,8 @@ tcp_listen(const char *host, const char *serv, socklen_t *addrlenp)
 
 	Listen(listenfd, LISTENQ);
 
+	//通过指针addrlenp返回协议地址的带下，这个大小允许调用者在通过accept获取
+	//客户的协议地址时分配一个套接字地址结构的内存空间
 	if (addrlenp)
 		*addrlenp = res->ai_addrlen;	/* return size of protocol address */
 

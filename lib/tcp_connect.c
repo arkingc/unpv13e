@@ -8,7 +8,7 @@ tcp_connect(const char *host, const char *serv)
 	struct addrinfo	hints, *res, *ressave;
 
 	bzero(&hints, sizeof(struct addrinfo));
-	hints.ai_family = AF_UNSPEC;
+	hints.ai_family = AF_UNSPEC;//会首先搜索AAAA记录，然后搜索A记录
 	hints.ai_socktype = SOCK_STREAM;
 
 	if ( (n = getaddrinfo(host, serv, &hints, &res)) != 0)
@@ -16,6 +16,8 @@ tcp_connect(const char *host, const char *serv)
 				 host, serv, gai_strerror(n));
 	ressave = res;
 
+	//对于同时支持IPv4和IPv6的主机，由于设置了AF_UNSPEC，所以首先会搜索AAAA
+	//记录，连接成功后循环终止，可以通过指定带-4后缀的主机名来强制使用IPv4地址
 	do {
 		sockfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
 		if (sockfd < 0)

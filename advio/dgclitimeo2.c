@@ -17,6 +17,7 @@ dg_cli(FILE *fp, int sockfd, const SA *pservaddr, socklen_t servlen)
 
 		n = recvfrom(sockfd, recvline, MAXLINE, 0, NULL, NULL);
 		if (n < 0) {
+			//如果超时，recvfrom将返回一个EWOULDBLOCK错误
 			if (errno == EWOULDBLOCK) {
 				fprintf(stderr, "socket timeout\n");
 				continue;

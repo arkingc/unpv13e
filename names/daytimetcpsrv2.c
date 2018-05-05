@@ -10,6 +10,7 @@ main(int argc, char **argv)
 	time_t			ticks;
 	struct sockaddr_storage	cliaddr;
 
+	//根据用户输入判断是否指定IP地址或主机名来决定第一个参数是否需要为NULL
 	if (argc == 2)
 		listenfd = Tcp_listen(NULL, argv[1], &addrlen);
 	else if (argc == 3)
