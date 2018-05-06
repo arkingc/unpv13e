@@ -9,12 +9,13 @@ main(int argc, char **argv)
 	struct sockaddr_un	cliaddr, servaddr;
 	void				sig_chld(int);
 
+	//创建Unix域套接字描述符
 	listenfd = Socket(AF_LOCAL, SOCK_STREAM, 0);
 
 	unlink(UNIXSTR_PATH);
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sun_family = AF_LOCAL;
-	strcpy(servaddr.sun_path, UNIXSTR_PATH);
+	strcpy(servaddr.sun_path, UNIXSTR_PATH);//UNIXSTR_PATH：/tmp/unix.str
 
 	Bind(listenfd, (SA *) &servaddr, sizeof(servaddr));
 

@@ -35,6 +35,7 @@ write_fd(int fd, void *ptr, size_t nbytes, int sendfd)
 	msg.msg_iov = iov;
 	msg.msg_iovlen = 1;
 
+	//发送描述符
 	return(sendmsg(fd, &msg, 0));
 }
 /* end write_fd */

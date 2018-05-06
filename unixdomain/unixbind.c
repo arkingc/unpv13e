@@ -12,6 +12,11 @@ main(int argc, char **argv)
 
 	sockfd = Socket(AF_LOCAL, SOCK_STREAM, 0);
 
+	/********************************************************
+	 * 如果文件系统中已存在该路径名，bind将会失败，为此先调用unlink
+	 * 删除这个路径名，以防它已经存在。如果它不存在，unlink将返回一个
+	 * 我们要将其忽略的错误
+	 ********************************************************/
 	unlink(argv[1]);		/* OK if this fails */
 
 	bzero(&addr1, sizeof(addr1));

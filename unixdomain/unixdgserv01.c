@@ -8,6 +8,7 @@ main(int argc, char **argv)
 
 	sockfd = Socket(AF_LOCAL, SOCK_DGRAM, 0);
 
+	//UNIXDG_PATH：/tmp/unix.dg
 	unlink(UNIXDG_PATH);
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sun_family = AF_LOCAL;

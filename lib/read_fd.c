@@ -8,7 +8,9 @@ read_fd(int fd, void *ptr, size_t nbytes, int *recvfd)
 	struct iovec	iov[1];
 	ssize_t			n;
 
-#ifdef	HAVE_MSGHDR_MSG_CONTROL
+#ifdef	HAVE_MSGHDR_MSG_CONTROL	//所支持的是使用msg_control成员的recvmsg版本
+	//msg_control缓冲区必须为cmsghdr结构适当地对齐，单纯分配一个字符数组是不够
+	//的。这个联合确保字符数组正确对齐
 	union {
 	  struct cmsghdr	cm;
 	  char				control[CMSG_SPACE(sizeof(int))];
@@ -17,7 +19,7 @@ read_fd(int fd, void *ptr, size_t nbytes, int *recvfd)
 
 	msg.msg_control = control_un.control;
 	msg.msg_controllen = sizeof(control_un.control);
-#else
+#else	//所支持的是使用accrights成员的recvmsg版本
 	int				newfd;
 
 	msg.msg_accrights = (caddr_t) &newfd;
@@ -32,10 +34,12 @@ read_fd(int fd, void *ptr, size_t nbytes, int *recvfd)
 	msg.msg_iov = iov;
 	msg.msg_iovlen = 1;
 
+	//接收描述符
 	if ( (n = recvmsg(fd, &msg, 0)) <= 0)
 		return(n);
 
-#ifdef	HAVE_MSGHDR_MSG_CONTROL
+#ifdef	HAVE_MSGHDR_MSG_CONTROL	//所支持的是使用msg_control成员的recvmsg版本
+	//验证辅助数据的长度、级别和类型，然后从中取出新建的描述符
 	if ( (cmptr = CMSG_FIRSTHDR(&msg)) != NULL &&
 	    cmptr->cmsg_len == CMSG_LEN(sizeof(int))) {
 		if (cmptr->cmsg_level != SOL_SOCKET)
@@ -45,7 +49,7 @@ read_fd(int fd, void *ptr, size_t nbytes, int *recvfd)
 		*recvfd = *((int *) CMSG_DATA(cmptr));
 	} else
 		*recvfd = -1;		/* descriptor was not passed */
-#else
+#else	//所支持的是使用accrights成员的recvmsg版本
 /* *INDENT-OFF* */
 	if (msg.msg_accrightslen == sizeof(int))
 		*recvfd = newfd;
