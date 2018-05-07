@@ -8,9 +8,11 @@ home_page(const char *host, const char *fname)
 
 	fd = Tcp_connect(host, SERV);	/* blocking connect() */
 
+	//发出一个HTTP GET命令以获取主页(文件名经常是/)
 	n = snprintf(line, sizeof(line), GET_CMD, fname);
 	Writen(fd, line, n);
 
+	//读取应答
 	for ( ; ; ) {
 		if ( (n = Read(fd, line, MAXLINE)) == 0)
 			break;		/* server closed connection */
