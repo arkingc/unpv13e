@@ -19,6 +19,8 @@ main(int argc, char **argv)
 
 	Connect(sockfd, (SA *) &servaddr, sizeof(servaddr));
 
+	//设置SO_LINGER套接字选项，把l_onoff标准设为1，把l_linger时间设为0
+	//这样设置导致连接被关闭时在TCP套接字上发送一个RST
 	ling.l_onoff = 1;		/* cause RST to be sent on close() */
 	ling.l_linger = 0;
 	Setsockopt(sockfd, SOL_SOCKET, SO_LINGER, &ling, sizeof(ling));
