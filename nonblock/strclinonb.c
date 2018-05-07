@@ -38,6 +38,10 @@ str_cli(FILE *fp, int sockfd)
 	char		to[MAXLINE], fr[MAXLINE];
 	char		*toiptr, *tooptr, *friptr, *froptr;
 
+	/*
+	 * 把sockfd、标准输入、标准输出的描述符设置为非阻塞
+	 */
+
 	val = Fcntl(sockfd, F_GETFL, 0);
 	Fcntl(sockfd, F_SETFL, val | O_NONBLOCK);
 
@@ -46,6 +50,10 @@ str_cli(FILE *fp, int sockfd)
 
 	val = Fcntl(STDOUT_FILENO, F_GETFL, 0);
 	Fcntl(STDOUT_FILENO, F_SETFL, val | O_NONBLOCK);
+
+	/*
+	 * 初始化缓冲区指针
+	 */
 
 	toiptr = tooptr = to;	/* initialize buffer pointers */
 	friptr = froptr = fr;
