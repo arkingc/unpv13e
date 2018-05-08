@@ -1,3 +1,16 @@
+/********************************************************************
+ *                 客户
+ *               ----------              
+ * 标准输入----->| copyto线程|------------  
+ *               ----------             |          --------
+ *                 /|\                   -------->|  服务器 |
+ *                  | pthread_create     ---------|        |
+ *                  |                   |          --------
+ *               ---------              |        
+ * 标准输出<-----| main线程 |<------------
+ *               ---------
+ ********************************************************************/
+
 #include	"unpthread.h"
 
 void	*copyto(void *);
@@ -14,6 +27,7 @@ str_cli(FILE *fp_arg, int sockfd_arg)
 	sockfd = sockfd_arg;	/* copy arguments to externals */
 	fp = fp_arg;
 
+	//新线程ID返回到tid中，新线程执行copyto函数
 	Pthread_create(&tid, NULL, copyto, NULL);
 
 	while (Readline(sockfd, recvline, MAXLINE) > 0)
@@ -30,6 +44,7 @@ copyto(void *arg)
 
 	Shutdown(sockfd, SHUT_WR);	/* EOF on stdin, send FIN */
 
+	//通过return来终止线程
 	return(NULL);
 		/* 4return (i.e., thread terminates) when EOF on stdin */
 }
