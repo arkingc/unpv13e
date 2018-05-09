@@ -1,6 +1,6 @@
 /* include web1 */
 #include	"unpthread.h"
-#include	<thread.h>		/* Solaris threads */
+#include	<thread.h>		//除了Pthread线程外，还需使用Solaris线程
 
 #define	MAXFILES	20
 #define	SERV		"80"	/* port number or service name */
@@ -10,7 +10,7 @@ struct file {
   char	*f_host;			/* hostname or IP address */
   int    f_fd;				/* descriptor */
   int	 f_flags;			/* F_xxx below */
-  pthread_t	 f_tid;			/* thread ID */
+  pthread_t	 f_tid;			/* 记录传输该文件的线程ID */
 } file[MAXFILES];
 #define	F_CONNECTING	1	/* connect() in progress */
 #define	F_READING		2	/* connect() complete; now reading */
@@ -33,9 +33,9 @@ main(int argc, char **argv)
 
 	if (argc < 5)
 		err_quit("usage: web <#conns> <IPaddr> <homepage> file1 ...");
-	maxnconn = atoi(argv[1]);
+	maxnconn = atoi(argv[1]);		//最大并发连接数
 
-	nfiles = min(argc - 4, MAXFILES);
+	nfiles = min(argc - 4, MAXFILES);	//最大传输文件数
 	for (i = 0; i < nfiles; i++) {
 		file[i].f_name = argv[i + 4];
 		file[i].f_host = argv[2];
@@ -43,9 +43,12 @@ main(int argc, char **argv)
 	}
 	printf("nfiles = %d\n", nfiles);
 
+	//home_page函数相比非阻塞connect版本，没有改动
 	home_page(argv[2], argv[3]);
-
+	//nlefttoread：仍待读取的文件数，到达0时程序任务完成
+	//nlefttoconn：尚无TCP连接的文件数
 	nlefttoread = nlefttoconn = nfiles;
+	//nconn：当前打开着的连接数（不能超过第一个命令行参数）
 	nconn = 0;
 /* end web1 */
 /* include web2 */
@@ -59,12 +62,18 @@ main(int argc, char **argv)
 				err_quit("nlefttoconn = %d but nothing found", nlefttoconn);
 
 			file[i].f_flags = F_CONNECTING;
+			//创建线程执行do_get_read函数
 			Pthread_create(&tid, NULL, &do_get_read, &file[i]);
 			file[i].f_tid = tid;
 			nconn++;
 			nlefttoconn--;
 		}
 
+		//通过指定第一个参数为0调用Solaris线程函数thr_join，等待任何一个
+		//线程终止。
+		//Pthreads没有提供等待任一线程终止的手段，pthread_join函数要求我
+		//们显式指定想要等待的线程。Pthreads解决本问题的方法较为复杂，它要
+		//求使用条件变量供即将终止的线程通知主线程自身何时终止
 		if ( (n = thr_join(0, &tid, (void **) &fptr)) != 0)
 			errno = n, err_sys("thr_join error");
 
