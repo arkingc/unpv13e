@@ -32,6 +32,7 @@ main(int argc, char **argv)
 
 		if ( (childpid = Fork()) == 0) {	/* child process */
 			Close(listenfd);	/* close listening socket */
+			//处理来自客户的请求
 			web_child(connfd);	/* process request */
 			exit(0);
 		}

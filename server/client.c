@@ -14,9 +14,9 @@ main(int argc, char **argv)
 		err_quit("usage: client <hostname or IPaddr> <port> <#children> "
 				 "<#loops/child> <#bytes/request>");
 
-	nchildren = atoi(argv[3]);
-	nloops = atoi(argv[4]);
-	nbytes = atoi(argv[5]);
+	nchildren = atoi(argv[3]);	//子进程数
+	nloops = atoi(argv[4]);		//每个子进程连接服务器，发送请求，接收数据，循环nloops次
+	nbytes = atoi(argv[5]);		//要求服务器返回的数据字节数
 	snprintf(request, sizeof(request), "%d\n", nbytes); /* newline at end */
 
 	for (i = 0; i < nchildren; i++) {
@@ -29,6 +29,7 @@ main(int argc, char **argv)
 				if ( (n = Readn(fd, reply, nbytes)) != nbytes)
 					err_quit("server returned %d bytes", n);
 
+				//由客户端关闭连接
 				Close(fd);		/* TIME_WAIT on client, not server */
 			}
 			printf("child %d done\n", i);
