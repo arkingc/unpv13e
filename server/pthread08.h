@@ -6,5 +6,6 @@ Thread	*tptr;		/* array of Thread structures; calloc'ed */
 
 #define	MAXNCLI	32
 int					clifd[MAXNCLI], iget, iput;
+//互斥访问clifd
 pthread_mutex_t		clifd_mutex;
 pthread_cond_t		clifd_cond;

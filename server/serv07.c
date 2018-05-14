@@ -2,6 +2,7 @@
 #include	"unpthread.h"
 #include	"pthread07.h"
 
+//用于线程互斥调用accept
 pthread_mutex_t	mlock = PTHREAD_MUTEX_INITIALIZER;
 
 int
